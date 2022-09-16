@@ -38,6 +38,8 @@ void setup() {
   if (!connected) {
     Serial.println("Something went wrong; are you indoor? Move near a window and retry");
     while (1) {}
+  } else {
+    Serial.println("Connect Success!");
   }
 
   // Set poll interval to 60 secs.
@@ -60,6 +62,7 @@ void setup() {
 }
 
 void loop() {
+
   if (isPushedTallyCounter()) {
     int err;
     modem.setPort(1);
@@ -78,7 +81,7 @@ void loop() {
   if (!modem.available()) {
     Serial.println("No downlink message received at this time.");
     modem.poll();
-    delay(1000);
+    delay(200);
     return;
   }
   
